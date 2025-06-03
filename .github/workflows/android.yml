@@ -26,7 +26,7 @@ jobs:
         run: ./gradlew assembleDebug
 
       - name: Upload Debug APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@d8bcb75f44d3d86f2c52e20f15b6fd0d751c8bd0
         with:
           name: Kiss2Go-APK
           path: app/build/outputs/apk/debug/app-debug.apk
