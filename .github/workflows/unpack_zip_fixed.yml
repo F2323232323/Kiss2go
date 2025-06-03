@@ -1,0 +1,29 @@
+
+name: Entpacke ZIP und Commit
+
+on:
+  workflow_dispatch:
+
+jobs:
+  unzip-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Entpacke ZIP
+        run: |
+          unzip Kiss2Go_Deploy.zip -d temp_unpacked
+          rsync -a temp_unpacked/ .
+          rm -rf temp_unpacked
+          rm Kiss2Go_Deploy.zip
+
+      - name: Commit entpackte Dateien
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "🔧 Entpacke Kiss2Go_Deploy.zip" || echo "Nichts zu committen"
+          git push
