@@ -22,8 +22,11 @@ jobs:
       - name: Grant Gradlew Rights
         run: chmod +x gradlew
 
-      - name: Build APK
-        run: ./gradlew assembleDebug
+      - name: Use Gradle Wrapper directly
+  run: |
+    ./gradlew wrapper
+    chmod +x gradlew
+    ./gradlew assembleDebug
 
       - name: Upload APK as GitHub Release
         uses: softprops/action-gh-release@v1
