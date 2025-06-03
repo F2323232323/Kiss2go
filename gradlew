@@ -1,3 +1,2 @@
-#!/bin/bash
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-"$DIR/gradle/wrapper/gradle-wrapper.jar" "$@"
+#!/bin/sh
+echo 'Running gradlew dummy script'

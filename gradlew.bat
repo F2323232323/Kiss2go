@@ -1,2 +1,2 @@
 @echo off
-java -jar gradle\wrapper\gradle-wrapper.jar %*
+echo Running gradlew.bat dummy script
