@@ -19,14 +19,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Grant Gradlew Rights
-        run: chmod +x gradlew
-
-      - name: Use Gradle Wrapper directly
-  run: |
-    ./gradlew wrapper
-    chmod +x gradlew
-    ./gradlew assembleDebug
+      - name: Grant permission and build
+        run: |
+          chmod +x gradlew
+          ./gradlew wrapper
+          ./gradlew assembleDebug
 
       - name: Upload APK as GitHub Release
         uses: softprops/action-gh-release@v1
