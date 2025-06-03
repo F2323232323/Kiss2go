@@ -1,0 +1,24 @@
+name: Decode gradle-wrapper.jar
+
+on:
+  workflow_dispatch:
+
+jobs:
+  decode-and-save:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Decode gradle-wrapper.jar.base64
+        run: |
+          mkdir -p gradle/wrapper
+          base64 -d gradle/wrapper/gradle-wrapper.jar.base64 > gradle/wrapper/gradle-wrapper.jar
+
+      - name: Commit decoded JAR
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add gradle/wrapper/gradle-wrapper.jar
+          git commit -m "Decode gradle-wrapper.jar from base64"
+          git push
