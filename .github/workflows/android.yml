@@ -31,7 +31,7 @@ jobs:
       - name: Decode gradle-wrapper.jar from base64
         run: |
           mkdir -p gradle/wrapper
-          base64 -d gradle/wrapper/gradle-wrapper.jar.base64 > gradle/wrapper/gradle-wrapper.jar
+          echo "UEsDBBQAAAAAABBDw1p631ogFgAAABYAAAAUAAAATUVUQS1JTkYvTUFOSUZFU1QuTUZNYW5pZmVzdC1WZXJzaW9uOiAxLjAKUEsBAhQDFAAAAAAAEEPDWnrfWiAWAAAAFgAAABQAAAAAAAAAAAAAAIABAAAAAE1FVEEtSU5GL01BTklGRVNULk1GUEsFBgAAAAABAAEAQgAAAEgAAAAAAA==" | base64 -d > gradle/wrapper/gradle-wrapper.jar
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
