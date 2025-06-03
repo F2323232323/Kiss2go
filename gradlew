@@ -1,8 +1,3 @@
 #!/bin/bash
-##############################################################################
-##
-##  Gradle start up script for UN*X
-##
-##############################################################################
-GRADLE_HOME=$(dirname "$0")
-exec "$GRADLE_HOME"/gradle/wrapper/gradle-wrapper.jar "$@"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+"$DIR/gradle/wrapper/gradle-wrapper.jar" "$@"

@@ -4,20 +4,21 @@ plugins {
 
 android {
     compileSdk 34
+
     defaultConfig {
         applicationId "com.haubutz.kiss2go"
-        minSdk 26
+        minSdk 24
         targetSdk 34
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
 
-dependencies {
-    implementation 'com.github.mik3y:usb-serial-for-android:3.4.6'
-}
+dependencies {}
