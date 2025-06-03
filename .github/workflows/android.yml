@@ -23,7 +23,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build APK
-        run: ./gradlew assembleDebug
+        run: bash gradlew assembleDebug
 
       - name: Upload APK as GitHub Release
         uses: softprops/action-gh-release@v1
