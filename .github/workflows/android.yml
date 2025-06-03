@@ -2,11 +2,11 @@ name: Build Kiss2Go APK
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build:
-    name: Build Debug APK
     runs-on: ubuntu-latest
 
     steps:
@@ -16,18 +16,23 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
           java-version: '17'
+          distribution: 'temurin'
 
-      - name: Grant permission and build
+      - name: Decode gradle-wrapper.jar from base64
         run: |
-          chmod +x gradlew
-          ./gradlew wrapper
-          ./gradlew assembleDebug
+          mkdir -p gradle/wrapper
+          base64 -d gradle/wrapper/gradle-wrapper.jar.base64 > gradle/wrapper/gradle-wrapper.jar
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
 
       - name: Upload APK as GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          name: Kiss2Go-Release
-          tag_name: kiss2go-${{ github.run_number }}
           files: app/build/outputs/apk/debug/app-debug.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
